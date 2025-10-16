@@ -1,0 +1,9 @@
+Order ID,Sale Date,Item Name,Quantity,Selling Price (per item),Cost Price (per item),Profit per Item,Line Revenue
+1,2025-10-16,Pink Shirt(M),4,300.00,250.00,50.00,1200.00
+1,2025-10-16,Mens Jeans(L),2,490.00,255.00,235.00,980.00
+1,2025-10-16,Blue Trousers(M),2,500.00,250.00,250.00,1000.00
+2,2025-10-16,Mens Jeans(L),5,490.00,255.00,235.00,2450.00
+2,2025-10-16,Black Shirt(XL),6,250.00,150.00,100.00,1500.00
+2,2025-10-16,Yellow T-Shirt(S),5,300.00,200.00,100.00,1500.00
+3,2025-10-16,Black Shirt(XL),7,250.00,150.00,100.00,1750.00
+4,2025-10-16,Yellow T-Shirt(S),18,300.00,200.00,100.00,5400.00
