@@ -569,7 +569,7 @@ def predictive_restock():
 
 # ---------- Predictive Restock Analysis ----------
 
-def predictive_restock():
+def predictive_restock(): #Using this feature after 2 weeks of order history will result in highly accurate prediction
     
     """
     Analyzes past 7 days' sales and predicts which items are likely to need restocking soon.
