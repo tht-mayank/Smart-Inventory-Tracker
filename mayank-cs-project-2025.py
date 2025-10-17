@@ -515,57 +515,6 @@ def export_report_csv(period_type='day', date_value=None):
     finally:
         cursor.close()
         db.close()
-        
-def predictive_restock():
-    
-    """
-    Analyzes past 7 days' sales and predicts which items are likely to need restocking soon.
-    Uses actual stock levels from menu table.
-    """
-    
-    db=connect_db()
-    cursor=db.cursor()
-
-    print("\n--- Predictive Restock Analysis ---")
-
-    try:
-        # Fetch average daily sales in the last 7 days
-        query ="""
-        SELECT 
-            m.item_name,
-            m.stock,
-            SUM(s.quantity)/7 AS avg_daily_sales
-        FROM sales s
-        JOIN inventory m ON s.item_id = m.item_id
-        JOIN orders o ON s.order_id = o.order_id
-        WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-        GROUP BY m.item_id
-        """
-        cursor.execute(query)
-        rows=cursor.fetchall()
-
-        if not rows:
-            print("No recent sales data available for prediction.")
-            cursor.close()
-            db.close()
-            return
-
-        print(f"\n{'Item Name':<20} | {'Stock':<6} | {'Avg Daily Sales':<15} | {'Predicted Days Left':<18} | Status")
-        print("-" * 80)
-        for item_name, stock, avg_sales in rows:
-            avg_sales =avg_sales or 0
-            if avg_sales == 0:
-                days_left= "∞"
-                status= "Stable"
-            else:
-                days_left= stock/avg_sales
-                status ="Low" if days_left < 5 else "OK"
-            print(f"{item_name:<20} | {stock:<6} | {avg_sales:<15.2f} | {days_left:<18} | {status}")
-    except mysql.connector.Error as err:
-        print(f"Database error: {err}")
-    finally:
-        cursor.close()
-        db.close()
 
 # ---------- Predictive Restock Analysis ----------
 
